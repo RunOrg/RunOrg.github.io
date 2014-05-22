@@ -56,19 +56,44 @@
 
 /* ========== */
 
+@-webkit-keyframes examples
+{
+	from {-webkit-transform: rotate(-3deg);}
+	to {-webkit-transform: rotate(-3.0001deg);}
+}
+
+@keyframes examples
+{
+	from {transform: rotate(-3deg);}
+	to {transform: rotate(-3.0001deg);}
+}
+
 #examples {
-	background-color: #DDD;
+	-webkit-animation-direction: alternate;
+	-webkit-animation-iteration-count: infinite;
+	-webkit-animation: examples 600s; 
+	animation-direction: alternate;
+	animation-iteration-count: infinite;
+	animation: examples 600s;
+	background-color: #E70079;
+	background: radial-gradient(ellipse farthest-corner at 470px -12px, #FF3388 0%, #E70079 80%);
+	box-shadow: 0 1px 1px rgba(0,0,0,0.75);
+	padding: 0 20px;
+	margin: 0 -20px;
+	margin: 70px -20px 90px;
 }
 
 #examples ul {
-	margin: 70px auto;
+	margin: auto;
 	height: 40px;
 	line-height: 40px;
-	color: #111;
+	color: white;
 	width: 960px;
 	padding: 10px;
 	font-size: 20px;
+	text-transform: uppercase;
 	list-style-type: none;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.25);
 }
 
 #examples li {
@@ -103,6 +128,8 @@
 
 #why .side h2 {
 	text-align: center;
+	font-weight: normal;
+	text-transform: uppercase;
 	margin: 0;
 }
 
