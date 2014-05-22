@@ -86,5 +86,7 @@
 #why p {
 	width: 600px;
 	color: #555;
+	text-align: justify;
+	line-height: 1.85em;
 }
 #why p strong { color: #111; }
