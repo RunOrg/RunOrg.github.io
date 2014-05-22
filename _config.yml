@@ -1,0 +1,2 @@
+exclude: [ 'run-jekyll.bat' ]
+encoding: 'UTF-8'
