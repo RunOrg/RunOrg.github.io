@@ -1,0 +1,57 @@
+#hero {
+	width: 960px;
+	margin: auto;
+	position: relative;
+	overflow: hidden;
+}
+
+#hero .text {
+	position: relative;
+	margin: 80px 0 80px 280px;	
+	padding: 10px 0;
+	text-transform: uppercase;
+	color: #555;
+}
+
+#hero strong {
+	color: #000;
+}
+
+#hero .text p {
+	margin: 0;
+	text-align: center;
+	line-height: 1.4em;
+	font-size: 20px;
+}
+
+#hero .text p + p {	
+	font-size: 16px;
+}
+
+#hero .text:before {
+	height: 60px;
+	width: 100%;
+	content: ' ';
+	position: absolute;
+	top: -60px;
+	background: url(/images/title-top.png) center center no-repeat;
+}
+
+#hero .text:after {
+	height: 60px;
+	width: 100%;
+	content: ' ';
+	position: absolute;
+	bottom: -60px;
+	background: url(/images/title-bottom.png) center center no-repeat;
+}
+
+
+#logo {
+	left: 60px;
+	top: 60px;
+	position: absolute;
+	width: 120px;
+	height: 120px;
+}
+
