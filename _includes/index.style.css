@@ -1,6 +1,6 @@
 #hero {
 	width: 960px;
-	margin: auto;
+	margin: 50px auto 0;
 	position: relative;
 	overflow: hidden;
 }
@@ -56,13 +56,27 @@
 
 /* ========== */
 
+#github {
+	text-align: center;
+	margin: 100px 0 0px 280px;
+	font-size: 14px;
+	font-variant: small-caps;
+	line-height: 21px;
+	color: #888;
+	}
+
+#github iframe {
+	vertical-align: bottom;
+}
+
+/* ========== */
+
 #examples {
 	background-color: #E70079;
 	background: radial-gradient(ellipse farthest-corner at 470px -12px, #FF3388 0%, #E70079 80%);
 	box-shadow: 0 1px 2px rgba(0,0,0,0.75);
 	padding: 0 20px;
-	margin: 0 -20px;
-	margin: 70px -20px 90px;
+	margin: 40px -20px 90px;
 }
 
 #examples ul {
