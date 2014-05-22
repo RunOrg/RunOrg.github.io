@@ -46,7 +46,6 @@
 	background: url(/images/title-bottom.png) center center no-repeat;
 }
 
-
 #logo {
 	left: 60px;
 	top: 30px;
@@ -55,3 +54,23 @@
 	height: 180px;
 }
 
+/* ========== */
+
+#examples {
+	background-color: #DDD;
+}
+
+#examples ul {
+	margin: 30px auto;
+	height: 40px;
+	line-height: 40px;
+	color: #111;
+	width: 960px;
+	padding: 0px;
+	list-style-type: none;
+}
+
+#examples li {
+	display: none;
+	text-align: center;
+} 

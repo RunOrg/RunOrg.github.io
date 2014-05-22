@@ -15,5 +15,51 @@
 				<p>We store people and the interactions between them.</p>
 			</div>
 		</div>
+	
+		<div id="examples">
+		
+			<ul>
+				<li style="display:block">Post my message to the project chatroom. </li>
+				<li>Send me an e-mail when a new message appears in this conversation. </li>
+				<li>Ask everyone in the <em>New Members</em> group to please fill this form. </li>
+				<li>Make Caroline a moderator of this forum. </li>
+				<li>Tell me who is coming to next week's meeting. </li>
+				<li>Please report this message to a moderator. </li>
+				<li>Show me the clickthrough rates for my last newsletter. </li>
+				<li>Give me the names and pictures of all participants in this conversation.</li>
+				<li>Upvote this cat picture. </li>
+				<li>Only let <em>Trusted Members</em> see my extended profile.</li>
+				<li>Remind Ted to follow up with this customer.</li> 
+				<li>Let me unsubscribe from this sender. </li>
+			</ul>
+		
+		</div>
+	
+		<script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
+		<script>
+$(function() {
+
+	// Display examples one after another
+	// ==================================
+	
+	function showNext() {
+
+		var next = $('#examples li:visible').next();
+		if (!next.length) next = $('#examples li:first');
+		
+		var delay = 3000 + 250 * next.text().split(' ').length;
+		
+		$('#examples li:visible').fadeOut('fast',function() {
+			next.fadeIn('fast',function() { setTimeout(showNext, delay); });
+		});
+		
+	};
+	
+	setTimeout(showNext,5000);
+	
+});
+		
+		</script>		
+	
 	</body>
 </html>
