@@ -3,6 +3,8 @@ body {
 	font-family: 'Noto Serif', serif;
 }
 
+/* ========== */
+
 #menu {
 	background-color: #E70079;
 	background: radial-gradient(ellipse farthest-corner at 470px -12px, #FF3388 0%, #E70079 80%);
@@ -40,4 +42,60 @@ body {
 #menu a:hover
 {
 	color: #CCC;
+}
+
+/* ========== */
+
+.text-column {
+	width: 700px;
+	margin: auto;
+	color: #555;
+	line-height: 1.85em;
+	font-family: "Verdana", "Arial", sans-serif;
+}
+
+.text-column p {
+	width: 700px;
+	text-align: justify;
+}
+.text-column strong { 
+	color: #111; 
+}
+
+/* ========== */
+
+.text-column li + li {
+	margin-top: 1em;
+}
+
+/* ========== */
+
+h2.centered {
+	clear: both;
+	text-align: center;
+	text-transform: uppercase;
+	line-height: 25px;
+	margin: 70px 0 50px;
+	color: #333;
+	font-weight: normal;
+}
+
+h2.centered span:before {
+	content: ' ';
+	width: 93px;
+	height: 25px;
+	display: inline-block;
+	background: url(/images/heading-left.png) center center no-repeat;
+	margin-right: 20px;
+	vertical-align: bottom;
+}
+
+h2.centered span:after {
+	content: ' ';
+	width: 93px;
+	height: 25px;
+	display: inline-block;
+	background: url(/images/heading-right.png) center center no-repeat;
+	margin-left: 20px;
+	vertical-align: bottom;
 }
