@@ -58,8 +58,13 @@ body {
 	width: 700px;
 	text-align: justify;
 }
+
 .text-column strong { 
 	color: #111; 
+}
+
+.text-column code { 
+	font-size: 17px; 
 }
 
 /* ========== */
