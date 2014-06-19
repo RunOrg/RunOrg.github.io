@@ -2,7 +2,9 @@
 title: List all people in the database
 ---
 <div id="body">
-<p><code>RunOrg.Person.List(limit, offset)</code> reads <code>limit</code> people from the database, starting at <code>offset</code>. The order is unspecified but consistent.</p><p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to a list of filled <code>RunOrg.Person</code> instances.</p>
+<p><code>RunOrg.Person.List(limit, offset)</code> reads <code>limit</code> people from the database, starting at <code>offset</code>. The order is unspecified but consistent.</p>
+<p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to a list of filled <code>RunOrg.Person</code> instances.</p>
+
 
 <p class="caption">Example usage</p><pre class="js">
 RunOrg.Person.List(10, 0).then(function(list) {
@@ -11,6 +13,19 @@ RunOrg.Person.List(10, 0).then(function(list) {
 })			 
 </pre>
 
-<h1> Errors</h1><h2> Returns <code>401 Unauthorized</code></h2><ul><li> if the provided token and requester do not match.</li></ul><h2> Returns <code>403 Forbidden</code></h2><ul><li> if the requester is not a database administrator</li></ul><h2> Returns <code>404 Not Found</code></h2><ul><li> if the database does not exist</li></ul><h1> Access restrictions</h1><p>Only <a href="/docs/js/groups/admin.htm">database administrators</a> may list all people in the database.</p><p>Note that <a href="/docs/js/people/get.htm">viewing individuals</a> is open to anyone.</p>
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token and requester do not match.</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the requester is not a database administrator</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Only <a href="/docs/js/groups/admin.htm">database administrators</a> may list all people in the database.</p>
+<p>Note that <a href="/docs/js/people/get.htm">viewing individuals</a> is open to anyone.</p>
+
 </div>
 <nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/people.htm">People</a></li></ul><span class="active">List all people in the database</span></nav>

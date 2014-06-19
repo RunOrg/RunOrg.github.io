@@ -4,6 +4,7 @@ title: Short information about a person
 <div id="body">
 <p>This object contains basic information about a person, just enough to be able to display their identity :</p>
 
+
 <pre class="json">
 { "id": "1c39461xbF3",
   "label": "Victor Nicollet",
@@ -11,12 +12,9 @@ title: Short information about a person
   "pic": "https://www.gravatar.com/avatar/5a31b00f649489a9a24d3dc3e8b28060?d=identicon" }
 </pre>
 
-<table class="files"><tr><td>
-`GET /db/{db}/people`
-</td><td><a href="/docs/api/people/all.htm">List all people in the database</a></td></tr><tr><td>
-`GET /db/{db}/people/{id}`
-</td><td><a href="/docs/api/people/get.htm">Fetch basic information for a person</a></td></tr></table>
+<table class="files"><tr><td><code><![CDATA[GET /db/{db}/people]]></code></td><td><a href="/docs/api/people/all.htm">List all people in the database</a></td></tr><tr><td><code><![CDATA[GET /db/{db}/people/{id}]]></code></td><td><a href="/docs/api/people/get.htm">Fetch basic information for a person</a></td></tr></table>
 
 <p>For privacy purposes, the short information will never include contact information, such as a _full_ e-mail address or phone number. To ensure that this is the case, make sure you correctly classify any contact information as such.</p>
+
 </div>
 <nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/people.htm">People</a></li></ul><span class="active">Short information about a person</span></nav>
