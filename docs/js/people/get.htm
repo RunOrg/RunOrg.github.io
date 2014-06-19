@@ -1,0 +1,28 @@
+---
+title: Fetch basic information for a person
+---
+<div id="body">
+<p>If <code>person</code> is an instance of <a href="/docs/js/people/person.htm"><code>RunOrg.Person</code></a>, then <code>person.Load()</code> fills (or replaces) its non-<code>id</code> fields with data retrieved from the API.</p><p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to the <code>person</code> object if it could be filled.</p>
+
+<p class="caption">Example usage</p><pre class="js">
+new RunOrg.Person("1ax69bfa335").Load().then(function(person) {     
+  console.log("Fetched data for %s.", person.label)
+})
+</pre>
+
+<p class="caption">Example usage, with error handling</p><pre class="js">
+var person = new RunOrg.Person("1ax69bfa335");
+
+person.Load().then(function() {     
+  console.log("Fetched data for %s.", person.label)
+}, function(error) {
+  if (error.HTTP == 404) 
+    console.log("Person %s not found.", person.id)
+  else 
+    console.log("An error happened: %o", error)
+})
+</pre>
+
+<h1> Errors</h1><h2> Returns <code>404 Not Found</code></h2><ul><li> if the database does not exist,</li><li> if person <code>{id}</code> does not exist in the database.</li></ul><h1> Access restrictions</h1><p>Anyone can view any person's basic information, if they have their identifier.</p>
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/people.htm">People</a></li></ul><span class="active">Fetch basic information for a person</span></nav>

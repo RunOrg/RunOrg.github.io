@@ -1,0 +1,29 @@
+---
+title: List all people in the database
+---
+<div id="body">
+<p>Returns all the people in the database, in an unspecified but consistent order, with <a href="/docs/api/concepts/pagination.htm">pagination</a>.</p>
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0SNQc00211H/people?limit=3&offset=213
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK
+Content-Type: application/json 
+  
+{ "list" : [ 
+  { "id" : "0SNQe00311H",
+    "name" : "test@runorg.com",
+    "gender" : null,
+    "pic" : "https://www.gravatar.com/avatar/1ed54d253636f5b33eff32c2d5573f70" },
+  { "id" : "0SNQg00511H",
+    "name" : "vnicollet@runorg.com",
+    "gender" : null,
+    "pic" : "https://www.gravatar.com/avatar/5a31b00f649489a9a24d3dc3e8b28060"} ],
+  "count" : 215 }
+</pre>
+
+<h1> Errors</h1><h2> Returns <code>401 Unauthorized</code></h2><ul><li> if the provided token and requester do not match.</li></ul><h2> Returns <code>403 Forbidden</code></h2><ul><li> if the requester is not a database administrator</li></ul><h2> Returns <code>404 Not Found</code></h2><ul><li> if the database does not exist</li></ul><h1> Access restrictions</h1><p>Only <a href="/docs/api/groups/admin.htm">database administrators</a> may list all people in the database.</p><p>Note that <a href="/docs/api/people/get.htm">viewing individuals</a> is open to anyone.</p>
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/people.htm">People</a></li></ul><span class="active">List all people in the database</span></nav>

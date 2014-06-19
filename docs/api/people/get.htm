@@ -1,0 +1,23 @@
+---
+title: Fetch basic information for a person
+---
+<div id="body">
+<p>Returns a <a href="/docs/api/people/person.htm"><code>&lt;person&gt;</code></a> representation of the person with identifier <code>{id}</code> in database <code>{db}</code>.</p>
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0Et4X0016om/people/0Et9j0026rO
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK 
+Content-Type: application/json
+
+{ "id" : "0Et9j0026rO",
+  "label" : "Victor Nicollet",
+  "gender" : "M", 
+  "pic" : "https://www.gravatar.com/avatar/648e25e4372728b2d3e0c0b2b6e26f4e" }
+</pre>
+
+<h1> Errors</h1><h2> Returns <code>404 Not Found</code></h2><ul><li> if the database does not exist,</li><li> if person <code>{id}</code> does not exist in the database.</li></ul><h1> Access restrictions</h1><p>Anyone can view any person's basic information, if they have their identifier.</p>
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/people.htm">People</a></li></ul><span class="active">Fetch basic information for a person</span></nav>

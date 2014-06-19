@@ -1,0 +1,23 @@
+---
+title: People
+---
+<div id="body">
+<p>A human <b>person</b> is a type of entity used throughout the RunOrg API for many  purposes, the most important being:</p><ul><li> Message and email recipients are always people. All sending APIs expect either individuals or <a href="/docs/js/groups.htm">groups</a> of people as their parameters.</li><li> Everyone who logs in, using any method, is bound to a person.</li><li> Access restrictions are based on the <a href="/docs/js/auth.htm">person who performs the action</a>.</li></ul>
+
+<h1> Class <code>Person</code></h1><p>The class <a href="/docs/js/people/person.htm"><code>RunOrg.Person</code></a> contains basic information about a person, just enough to be able to display their identity : a human-readable name, a small picture and (if available) their gender.</p><p>This class is used when retrieving lists of people (because it uses less bandwidth than fetching the entire profile) and in situations where obtaining a person's data is not the main purpose of the request (for example, when fetching a list of messages, basic information is provided about each author as a matter of convenience).</p>
+
+<table class="files"><tr><td>
+`class RunOrg.Person`
+</td><td><a href="/docs/js/people/person.htm">Short information about a person</a></td></tr><tr><td>
+`static RunOrg.Person.List`
+</td><td><a href="/docs/js/people/all.htm">List all people in the database</a></td></tr><tr><td>
+`method RunOrg.Person.Load`
+</td><td><a href="/docs/js/people/get.htm">Fetch basic information for a person</a></td></tr></table>
+
+<h1> Class &quot;Person.Profile&quot;</h1><p>The class <a href="/docs/js/people/profile.htm"><code>RunOrg.Person.Profile</code></a> contains full information about a person.</p>
+
+<h1> Complete profile</h1><p>The type <a href="/docs/js/people/profile.htm"><code>&lt;person:profile&gt;</code></a> contains full information about a person.</p>
+
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li></ul><span class="active">People</span><ul class="below"><li><a href="/docs/js/people/all.htm">List all people in the database</a></li><li><a href="/docs/js/people/get.htm">Fetch basic information for a person</a></li><li><a href="/docs/js/people/person.htm">Short information about a person</a></li></ul></nav>
