@@ -3,6 +3,14 @@
 body {
 	font-family: 'Roboto', 'Verdana', sans;
 	color: #333;
+	margin: 0;
+}
+
+body > h1 {
+	padding: 18px 0 18px 320px;
+	margin: 0;
+	color: #111;
+	background-color: #DDD;
 }
 
 a {
@@ -87,6 +95,48 @@ nav span {
 	display: inline;
 	padding: 0;
 	background-color: transparent;
+}
+
+#body h1 {
+	margin: 0.67em 0;
+	color: #111;
+	font-size: 18px;
+}
+
+#body h2 {
+	margin: 0.67em 0;
+	color: #111;
+	font-size: 13px;
+}
+
+/* Code */
+#body pre {
+	font-size: 12px;
+	padding: 8px 10px 12px;
+	width: 580px;
+	background-color: #1d1f21;
+	color: #c5c8c6;
+	border-radius: 8px;
+	overflow: hidden;
+}
+
+#body p.caption {
+	background-color: #282a2e;
+	color: #de935f;
+	padding: 4px 10px;
+	border-radius: 8px 8px 0 0;
+	width: 580px;
+	max-width: 580px;
+	font-weight: normal;
+	margin-bottom: 0;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	overflow: hidden;
+}
+
+#body p.caption + pre {
+	border-radius: 0 0 8px 8px;
+	margin-top: 0;
 }
 
 /* Tables */
