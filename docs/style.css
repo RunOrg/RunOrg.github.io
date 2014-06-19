@@ -1,0 +1,101 @@
+/* General */
+
+body {
+	font-family: 'Roboto', 'Verdana', sans;
+	color: #333;
+}
+
+a {
+	text-decoration: none;
+	color: #5484F2;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:visited {
+	color: #8C45CD;
+}
+
+code, pre {
+	font-family: Consolas, "Liberation Mono", Courier, monospace;
+}
+
+/* Navigation bar */
+
+nav {
+	float: left;
+	width: 280px;
+	padding: 10px;
+	overflow: hidden;
+}
+
+nav ul {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+nav ul.below {
+	padding-left: 16px;
+}
+
+nav li {
+	display: block;
+	margin: 0;
+	padding: 0;
+}
+
+nav a, nav span {
+	display: block;
+	line-height: 28px;
+	padding: 4px;
+	font-size: 13px;
+}
+
+nav span {
+	padding-left: 12px;
+	color: #111;
+	background-color: #EEE;
+}
+
+/* Text content */
+
+#body {
+	position: absolute;
+	margin-left: 320px;
+	font-size: 13px;
+	width: 640px;
+}
+
+#body p, #body li {
+	line-height: 1.7em;
+	max-width: 40em;
+}
+
+#body code {
+	display: inline-block;
+	padding: 0 5px;
+	border-radius: 4px;
+	font-weight: normal;
+	line-height: 20px;
+	background-color: #EEE;
+}
+
+#body table code {
+	display: inline;
+	padding: 0;
+	background-color: transparent;
+}
+
+/* Tables */
+table.files {
+	border-collapse: collapse;
+	width: 580px;
+}
+
+table.files td {
+	border: 1px solid #DDD;
+	padding: 8px;
+}
