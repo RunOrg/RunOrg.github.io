@@ -3,7 +3,7 @@ layout: docs-api
 title: Authenticate using Mozilla Persona
 ---
 <div id="body">
-<p>Processes a <a href="https://developer.mozilla.org/en-US/Persona/The_navigator.id_API">Mozilla Persona assertion</a> and authenticates the corresponding person based on the email address contained in the assertion.</p>
+<pre class="subtitle">POST /db/{db}/people/auth/persona</pre><p>Processes a <a href="https://developer.mozilla.org/en-US/Persona/The_navigator.id_API">Mozilla Persona assertion</a> and authenticates the corresponding person based on the email address contained in the assertion.</p>
 <p>If no such person exists, a new person is created using the email address.</p>
 <h1> Request</h1>
 <p>The request body contains exactly one field:</p>

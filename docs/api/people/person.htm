@@ -3,7 +3,7 @@ layout: docs-api
 title: Short information about a person
 ---
 <div id="body">
-<p>This object contains basic information about a person, just enough to be able to display their identity :</p>
+<pre class="subtitle">type &lt;person></pre><p>This object contains basic information about a person, just enough to be able to display their identity :</p>
 
 
 <table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the person in the database.</p>
@@ -19,7 +19,7 @@ title: Short information about a person
   "pic": "https://www.gravatar.com/avatar/5a31b00f649489a9a24d3dc3e8b28060?d=identicon" }
 </pre>
 
-<table class="files"><tr><td class="code"><code>GET /db/{db}/people</code></td><td><a href="/docs/api/people/all.htm">List all people in the database</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/persona</code></td><td><a href="/docs/api/people/persona.htm">Authenticate using Mozilla Persona</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/{id}</code></td><td><a href="/docs/api/people/get.htm">Fetch basic information for a person</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/auth/hmac</code></td><td><a href="/docs/api/people/hmac.htm">Authenticate with HMAC proof</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/search</code></td><td><a href="/docs/api/people/search.htm">Find people by name</a></td></tr></table>
+<table class="files"><tr><td class="code"><code>GET /db/{db}/people</code></td><td><a href="/docs/api/people/all.htm">List all people in the database</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/persona</code></td><td><a href="/docs/api/people/persona.htm">Authenticate using Mozilla Persona</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/{id}</code></td><td><a href="/docs/api/people/get.htm">Fetch basic information for a person</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/hmac</code></td><td><a href="/docs/api/people/hmac.htm">Authenticate with HMAC proof</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/search</code></td><td><a href="/docs/api/people/search.htm">Find people by name</a></td></tr></table>
 
 <p>For privacy purposes, the short information will never include contact information, such as a _full_ e-mail address or phone number. To ensure that this is the case, make sure you correctly classify any contact information as such.</p>
 
