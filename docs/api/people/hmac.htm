@@ -9,7 +9,25 @@ title: Authenticate with HMAC proof
 <p>The request body contains the following fields:</p>
 
 
-<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td>The identifier of the person that the user is authenticating as.</td></tr><tr><td class="code"><code>expires</code></td><td class="code"><code>&lt;time></code></td><td>The time after which this token becomes invalid, formatted as an [ISO-8601 timestamp](/concepts/time.htm).</td></tr><tr><td class="code"><code>key</code></td><td class="code"><code>&lt;id></code></td><td>The identifier of the secret key used to compute the HMAC, as returned by the [create key endpoint](/keys/create.htm).</td></tr><tr><td class="code"><code>proof</code></td><td class="code"><code>&lt;hex></code></td><td>The HMAC proof, encoded in hexadecimal. &lt;/field> &lt;doc for="api"> The server generates the **assertion**, which is constructed as follows:  `auth:&lt;id>:until:&lt;expires>` For instance, if authenticating as user `0Et9j0026rO` until midnight on the first of may 2014, the assertion would be:  `auth:0Et9j0026rO:until:2014-05-01T23:59:59Z` Once the assertion is generated, the HMAC is computed using the stored key, and compared with the hex proof. # Response Always `200 OK`: this is an [idempotent](/concepts/idempotent.htm) endpoint. The response contains two fields: &lt;/doc> &lt;fields for="api"></td></tr><tr><td class="code"><code>token</code></td><td class="code"><code>&lt;token></code></td><td>An [authentication token](/auth/token.htm).</td></tr><tr><td class="code"><code>self</code></td><td class="code"><code>&lt;person></code></td><td>The [short profile](/people/person.htm) of the authenticated person.</td></tr></table>
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the person that the user is authenticating as.</p>
+</td></tr><tr><td class="code"><code>expires</code></td><td class="code"><code>&lt;time></code></td><td><p>The time after which this token becomes invalid, formatted as an <a href="/docs/api/concepts/time.htm">ISO-8601 timestamp</a>.</p>
+</td></tr><tr><td class="code"><code>key</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the secret key used to compute the HMAC, as returned by the <a href="/docs/api/keys/create.htm">create key endpoint</a>.</p>
+</td></tr><tr><td class="code"><code>proof</code></td><td class="code"><code>&lt;hex></code></td><td><p>The HMAC proof, encoded in hexadecimal.</p>
+</td></tr></table>
+
+<p>The server generates the <b>assertion</b>, which is constructed as follows:</p>
+<p><code>auth:&lt;id&gt;:until:&lt;expires&gt;</code></p>
+<p>For instance, if authenticating as user <code>0Et9j0026rO</code> until midnight on the first of may 2014, the assertion would be:</p>
+<p><code>auth:0Et9j0026rO:until:2014-05-01T23:59:59Z</code></p>
+<p>Once the assertion is generated, the HMAC is computed using the stored key, and compared with the hex proof.</p>
+<h1> Response</h1>
+<p>Always <code>200 OK</code>: this is an <a href="/docs/api/concepts/idempotent.htm">idempotent</a> endpoint.</p>
+<p>The response contains two fields:</p>
+
+
+<table class="fields"><tr><td class="code"><code>token</code></td><td class="code"><code>&lt;token></code></td><td><p>An <a href="/docs/api/auth/token.htm">authentication token</a>.</p>
+</td></tr><tr><td class="code"><code>self</code></td><td class="code"><code>&lt;person></code></td><td><p>The <a href="/docs/api/people/person.htm">short profile</a> of the authenticated person.</p>
+</td></tr></table>
 
 <p>Please consult the Errors section below for ways to debug this method.</p>
 <h1> Examples</h1>

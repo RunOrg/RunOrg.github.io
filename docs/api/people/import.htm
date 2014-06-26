@@ -9,7 +9,12 @@ title: Import people by e-mail
 <p>Each imported profile may contain the following fields:</p>
 
 
-<table class="fields"><tr><td class="code"><code>email</code></td><td class="code"><code>&lt;label></code></td><td>The only mandatory field, should contain a valid e-mail address for the person.</td></tr><tr><td class="code"><code>name</code></td><td class="code"><code>&lt;label>, null</code></td><td>Optional, but recommended nonetheless, as it will be used as the display name of the person (that is, it will become field `label` of the [&lt;short>](/people/short.htm) values returned by the API).</td></tr><tr><td class="code"><code>givenName</code></td><td class="code"><code>&lt;label>, null</code></td><td>A given name, optional.</td></tr><tr><td class="code"><code>familyName</code></td><td class="code"><code>&lt;label>, null</code></td><td>A family name, optional.</td></tr><tr><td class="code"><code>gender</code></td><td class="code"><code>"M", "F", null</code></td><td>The person's gender, optional.</td></tr></table>
+<table class="fields"><tr><td class="code"><code>email</code></td><td class="code"><code>&lt;label></code></td><td><p>The only mandatory field, should contain a valid e-mail address for the person.</p>
+</td></tr><tr><td class="code"><code>name</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>Optional, but recommended nonetheless, as it will be used as the display name of the person (that is, it will become field <code>label</code> of the <a href="/docs/api/people/short.htm">&lt;short&gt;</a> values returned by the API).</p>
+</td></tr><tr><td class="code"><code>givenName</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>A given name, optional.</p>
+</td></tr><tr><td class="code"><code>familyName</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>A family name, optional.</p>
+</td></tr><tr><td class="code"><code>gender</code></td><td class="code"><code>"M", "F", null</code></td><td><p>The person's gender, optional.</p>
+</td></tr></table>
 
 <p>You may skip the <code>givenName</code> and <code>familyName</code> fields safely. This will be the case for people in a culture that does not have such naming conventions, or simply because the data is unavailable (it may be provided later).</p>
 <p>There is no limit on the number of people to be provided, though the request may bounce due to the <a href="/docs/api/config/httpd.htm">global limit on request body sizes</a>.</p>
@@ -18,7 +23,9 @@ title: Import people by e-mail
 <p>The response contains two fields:</p>
 
 
-<table class="fields"><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td>The [clock position](/concepts/delayed.htm) when all the imported people will be available.</td></tr><tr><td class="code"><code>imported</code></td><td class="code"><code>&lt;id> array</code></td><td>The identifiers associated to the imported people, in the same order as the array of people in the request.</td></tr></table>
+<table class="fields"><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td><p>The <a href="/docs/api/concepts/delayed.htm">clock position</a> when all the imported people will be available.</p>
+</td></tr><tr><td class="code"><code>imported</code></td><td class="code"><code>&lt;id> array</code></td><td><p>The identifiers associated to the imported people, in the same order as the array of people in the request.</p>
+</td></tr></table>
 
 <h1> Examples</h1>
 
