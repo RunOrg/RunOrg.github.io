@@ -1,0 +1,28 @@
+---
+layout: docs-api
+title: Short information about a group
+---
+<div id="body">
+<pre class="subtitle">type &lt;group></pre><p>Returned by most API methods that involve groups. It is intended to provide data relevant for displaying the group: its label and count.</p>
+<p>This object is <a href="/docs/api/concepts/viewer-dependent.htm">viewer-dependent</a>: its contents depend on the identity of the viewer.</p>
+
+
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the group in the database.</p>
+</td></tr><tr><td class="code"><code>label</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>An optional human-readable label. Not all groups have one, and it is not a mandatory property when creating a group.</p>
+</td></tr><tr><td class="code"><code>access</code></td><td class="code"><code>&lt;access> array</code></td><td><p>The list of <a href="/docs/api/groups/audience.htm">access levels</a> available to the viewer.</p>
+</td></tr><tr><td class="code"><code>count</code></td><td class="code"><code>&lt;int>, null</code></td><td><p>The number of group members (people currently in the group). This field is only available if the viewer has <b>list</b> access to the group.</p>
+</td></tr></table>
+
+<pre class="json">
+{ "id" : "0Et9j0026rO",
+  "label" : "Team members",
+  "access" : [ "list", "view" ],
+  "count": 16 }
+</pre>
+
+<h1> Related API endpoints</h1>
+
+
+<table class="files"><tr><td class="code"><code>GET /db/{db}/people</code></td><td><a href="/docs/api/people/all.htm">List all people in the database</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/persona</code></td><td><a href="/docs/api/people/persona.htm">Authenticate using Mozilla Persona</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/{id}</code></td><td><a href="/docs/api/people/get.htm">Fetch basic information for a person</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/hmac</code></td><td><a href="/docs/api/people/hmac.htm">Authenticate with HMAC proof</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/search</code></td><td><a href="/docs/api/people/search.htm">Find people by name</a></td></tr></table>
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">Short information about a group</span></nav>
