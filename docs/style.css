@@ -121,6 +121,16 @@ nav span {
 	overflow: hidden;
 }
 
+#body pre.subtitle {
+    background-color: #EEEEEE;
+    border-bottom: 1px solid #BBBBBB;
+    border-radius: 0;
+    border-top: 1px solid #BBBBBB;
+    color: #333333;
+    font-size: 14px;
+    padding: 8px 14px;
+}
+
 #body p.caption {
 	background-color: #282a2e;
 	color: #de935f;
