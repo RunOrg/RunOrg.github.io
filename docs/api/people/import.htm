@@ -1,0 +1,61 @@
+---
+layout: docs-api
+title: Import people by e-mail
+---
+<div id="body">
+<p>Allows you to post an array of people to be imported, returns the identifiers assigned to every one of them.</p>
+<p>This is the recommended way of adding multiple people to the database.</p>
+<h1> Request</h1>
+<p>Each imported profile may contain the following fields:</p>
+
+
+<table class="fields"><tr><td class="code"><code>email</code></td><td class="code"><code>&lt;label></code></td><td>The only mandatory field, should contain a valid e-mail address for the person.</td></tr><tr><td class="code"><code>name</code></td><td class="code"><code>&lt;label>, null</code></td><td>Optional, but recommended nonetheless, as it will be used as the display name of the person (that is, it will become field `label` of the [&lt;short>](/people/short.htm) values returned by the API).</td></tr><tr><td class="code"><code>givenName</code></td><td class="code"><code>&lt;label>, null</code></td><td>A given name, optional.</td></tr><tr><td class="code"><code>familyName</code></td><td class="code"><code>&lt;label>, null</code></td><td>A family name, optional.</td></tr><tr><td class="code"><code>gender</code></td><td class="code"><code>"M", "F", null</code></td><td>The person's gender, optional.</td></tr></table>
+
+<p>You may skip the <code>givenName</code> and <code>familyName</code> fields safely. This will be the case for people in a culture that does not have such naming conventions, or simply because the data is unavailable (it may be provided later).</p>
+<p>There is no limit on the number of people to be provided, though the request may bounce due to the <a href="/docs/api/config/httpd.htm">global limit on request body sizes</a>.</p>
+<h1> Response</h1>
+<p>When successful, <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/delayed.htm">delayed</a>, <a href="/docs/api/doncepts/sync-idempotent.md">sync-idempotent</a> request.</p>
+<p>The response contains two fields:</p>
+
+
+<table class="fields"><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td>The [clock position](/concepts/delayed.htm) when all the imported people will be available.</td></tr><tr><td class="code"><code>imported</code></td><td class="code"><code>&lt;id> array</code></td><td>The identifiers associated to the imported people, in the same order as the array of people in the request.</td></tr></table>
+
+<h1> Examples</h1>
+
+
+<p class="caption">Example request</p><pre class="api">
+POST /db/0Et4X0016om/people/import?as=0Et9j0026rO
+Authorization: RUNORG token=9dF3M1wEma4
+Content-Type: application/json 
+ 
+[ {"email":"vnicollet@runorg.com","fullname":"Victor Nicollet","gender":"M"}, 
+  {"email":"test@example.com"} ]
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted 
+Content-Type: application/json
+
+{ "imported": [ "0Et9j0026rO", "0SMXP00G0ON" ],
+  "at": {"2":87} }
+</pre>
+
+<h1> Duplicate entries</h1>
+<p>Duplicate entries (that is, entries for which a person already exists with the same email address) will be silently ignored, and the identifier for the old person will be returned.</p>
+<p>Please note that the <code>email</code> field is not a strict uniqueness constraint: there are normal situations under which two or more people may share an email address. The import procedure will avoid creating such duplicates for your convenience, but does not guarantee uniqueness. In particular, if two imports run in parallel with duplicate data, then duplicate email addresses may appear.</p>
+<h1> Errors</h1>
+<p>If you sent this request but did not receive a response (network timeouts, internal server errors...), use the fact that it is <a href="/docs/api/concepts/sync-idempotent.htm">sync-idempotent</a>.</p>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow importing new people, or no token was provided</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if person <code>{as}</code> is not allowed to import people.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Only <a href="/docs/api/groups/admin.htm">database administrators</a> may list all people in the database.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/people.htm">People</a></li></ul><span class="active">Import people by e-mail</span></nav>
