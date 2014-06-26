@@ -140,12 +140,17 @@ nav span {
 }
 
 /* Tables */
-table.files {
+table.files, table.fields {
 	border-collapse: collapse;
 	width: 580px;
 }
 
-table.files td {
+table.files td, table.fields td {
 	border: 1px solid #DDD;
 	padding: 8px;
+}
+
+table.fields td.code { 
+	vertical-align: top;
+	white-space: nowrap;
 }
