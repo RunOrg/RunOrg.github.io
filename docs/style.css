@@ -80,6 +80,7 @@ nav span {
 #body p, #body li {
 	line-height: 1.7em;
 	max-width: 40em;
+	text-align: justify;
 }
 
 #body code {
@@ -153,4 +154,9 @@ table.files td, table.fields td {
 table.fields td.code { 
 	vertical-align: top;
 	white-space: nowrap;
+	color: #777;
+}
+
+table td p {
+	margin: 0;
 }
