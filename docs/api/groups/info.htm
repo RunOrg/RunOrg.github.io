@@ -1,0 +1,37 @@
+---
+layout: docs-api
+title: Read group meta-data
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/groups/{id}/info</pre><p>Returns a <a href="/docs/api/groups/group.htm"><code>&lt;group&gt;</code></a> representation of the group with identifier <code>{id}</code> in database <code>{db}</code>.</p>
+
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0Et4X0016om/groups/0Et9j0026rO
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK 
+Content-Type: application/json
+
+{ "id"       : "0SNQe0032JZ",
+  "label"    : "Team members",
+  "access"   : [ "view", "list", "moderate", "admin" ],
+  "count"    : 215,
+  "audience" : {} }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow acting as <code>{as}</code>.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist,</li>
+  <li> if group <code>{id}</code> does not exist in the database,</li>
+  <li> if person <code>{as}</code> does not have at least <b>view</b> access to group <code>{id}</code>, to ensure <a href="/docs/api/concepts/absence-equivalence.md">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>An <a href="/docs/api/docs/#/group/audience.js">access level</a> of <b>view</b> is required to view group meta-data.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">Read group meta-data</span></nav>

@@ -1,0 +1,36 @@
+---
+layout: docs-js
+title: Group audience and access levels
+---
+<div id="body">
+<pre class="subtitle">type &lt;group.audience></pre><p>This is an <a href="/docs/js/concepts/audience.htm">audience</a> that describes the access levels supported by groups.</p>
+
+
+<p class="caption">Example audience</p><pre class="json">
+"audience" : {
+  "admin": {},
+  "moderate": {},
+  "list": "anyone",
+  "view": {}
+}
+</pre>
+
+<h1> Administrating the group</h1>
+<p>The <b>admin</b> access allows any operations that can be performed on the group, including changing its name, meta-data or access levels.</p>
+<p>It includes the <b>moderate</b>, <b>list</b> and <b>view</b> access levels.</p>
+<h1> Moderating the group</h1>
+<p>The <b>moderate</b> access allows:</p>
+<ul>
+  <li> Adding people to the group</li>
+  <li> Removing people from the group</li>
+</ul>
+<p>It includes <b>list</b> and <b>view</b> access levels.</p>
+<h1> Listing the group members</h1>
+<p>The <b>list</b> access allows viewing the full list of group members, and any information related to their membership (such as when they became members and how).</p>
+<p>Most operations that involve interacting with group members (such as sending an e-mail or inviting to a chat room) will require this access level.</p>
+<p>It includes <b>view</b> access.</p>
+<h1> Viewing the group</h1>
+<p>The <b>view</b> access allows viewing the group's label, and whether the contact is a member of that group. No other information is available.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/groups.htm">Groups</a></li></ul><span class="active">Group audience and access levels</span></nav>

@@ -1,0 +1,51 @@
+---
+layout: docs-api
+title: Add members to a group
+---
+<div id="body">
+<pre class="subtitle">POST /db/{db}/groups/{id}/add</pre><p>Adds the provided people to the specified group. People already in the group are silently ignored.</p>
+<h1> Request</h1>
+<p>The request body should be an array of <a href="/docs/api/people.md">people</a> identifiers.</p>
+<h1> Response</h1>
+<p>Always returns <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/delayed.htm">delayed</a>, <a href="/docs/api/concepts/idempotent.md">idempotent</a> request.</p>
+<p>The response contains a single field:</p>
+
+
+<table class="fields"><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td><p>The <a href="/docs/api/concepts/delayed.htm">clock position</a> when all the added people will appear in the group.</p>
+</td></tr></table>
+
+<h1> Examples</h1>
+
+
+<p class="caption">Example request</p><pre class="api">
+POST /db/0SNQc00211H/groups/0SNQe0032JZ/add
+Content-Type: application/json
+
+[ "0SNQe00311H", "0SNQg00511H" ]
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted
+Content-Type: application/json
+
+{ "at": {"1":113} }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow acting as <code>{as}</code></li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if person <code>{as}</code> does not have at least <b>moderate</b> access to group <code>{id}</code></li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if group <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if person <code>{as}</code> does not have at least <b>view</b> access to group <code>{id}</code>, to ensure <a href="/docs/api/concepts/absence-equivalence.htm">absence equivalence</a></li>
+  <li> if one of the added people does not exist in database <code>{db}</code></li>
+</ul><h1> Access restrictions</h1>
+<p>The <b>moderate</b> <a href="/docs/api/groups/audience.htm">access level</a> is required to add members to a group.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">Add members to a group</span></nav>

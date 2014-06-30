@@ -11,18 +11,20 @@ title: Short information about a group
 </td></tr><tr><td class="code"><code>label</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>An optional human-readable label. Not all groups have one, and it is not a mandatory property when creating a group.</p>
 </td></tr><tr><td class="code"><code>access</code></td><td class="code"><code>&lt;access> array</code></td><td><p>The list of <a href="/docs/api/groups/audience.htm">access levels</a> available to the viewer.</p>
 </td></tr><tr><td class="code"><code>count</code></td><td class="code"><code>&lt;int>, null</code></td><td><p>The number of group members (people currently in the group). This field is only available if the viewer has <b>list</b> access to the group.</p>
+</td></tr><tr><td class="code"><code>audience</code></td><td class="code"><code>&lt;audience>, null</code></td><td><p>The current audience of the group. See <a href="/docs/api/concepts/audience.htm">audience and access</a> for more information. This field is only available if the viewer has <b>admin</b> access to the group.</p>
 </td></tr></table>
 
 <pre class="json">
 { "id" : "0Et9j0026rO",
   "label" : "Team members",
   "access" : [ "list", "view" ],
-  "count": 16 }
+  "count": 16,
+  "audience": {} }
 </pre>
 
 <h1> Related API endpoints</h1>
 
 
-<table class="files"><tr><td class="code"><code>GET /db/{db}/people</code></td><td><a href="/docs/api/people/all.htm">List all people in the database</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/persona</code></td><td><a href="/docs/api/people/persona.htm">Authenticate using Mozilla Persona</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/{id}</code></td><td><a href="/docs/api/people/get.htm">Fetch basic information for a person</a></td></tr><tr><td class="code"><code>POST /db/{db}/people/auth/hmac</code></td><td><a href="/docs/api/people/hmac.htm">Authenticate with HMAC proof</a></td></tr><tr><td class="code"><code>GET /db/{db}/people/search</code></td><td><a href="/docs/api/people/search.htm">Find people by name</a></td></tr></table>
+<table class="files"><tr><td class="code"><code>GET /db/{db}/groups/{id}/info</code></td><td><a href="/docs/api/groups/info.htm">Read group meta-data</a></td></tr><tr><td class="code"><code>GET /db/{db}/groups</code></td><td><a href="/docs/api/groups/all.htm">List all groups in the database</a></td></tr><tr><td class="code"><code>POST /db/{db}/groups/{id}/add</code></td><td><a href="/docs/api/groups/add.htm">Add members to a group</a></td></tr><tr><td class="code"><code>GET /db/{db}/groups/{id}</code></td><td><a href="/docs/api/groups/get.htm">List all group members</a></td></tr><tr><td class="code"><code>POST /db/{db}/groups/{id}/remove</code></td><td><a href="/docs/api/groups/remove.htm">Remove members from a group</a></td></tr><tr><td class="code"><code>POST /db/{db}/groups</code></td><td><a href="/docs/api/groups/create.htm">Create a group</a></td></tr><tr><td class="code"><code>DELETE /db/{db}/groups/{id}</code></td><td><a href="/docs/api/groups/delete.htm">Delete a group</a></td></tr></table>
 </div>
 <nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">Short information about a group</span></nav>

@@ -1,0 +1,43 @@
+---
+layout: docs-api
+title: List all groups in the database
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/groups</pre><p>Returns all the groups in the database, in an unspecified but consistent order, with <a href="/docs/api/concepts/pagination.htm">pagination</a>.</p>
+<p>Only groups for which the viewer has <b>view</b> access will be included in the list.</p>
+<p>Groups are returned in <a href="/docs/api/groups/group.htm">short format</a>.</p>
+
+
+
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0SNQc00211H/groups?limit=3&offset=16
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK
+Content-Type: application/json 
+
+{ "list" : [ 
+  { "id" : "0SNQe00311H",
+    "label" : null,
+    "access": [ "list", "view" ],
+    "count": 25 },
+  { "id" : "0SNQg00511H",
+    "label" : "Team members",
+    "access" : [ "view" ]
+    "count": null } ] }    
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token and viewer do not match.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Anyone can retrieve results from this API, though only groups that the viewer has <b>view</b> access to will be returned.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">List all groups in the database</span></nav>

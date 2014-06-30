@@ -1,0 +1,59 @@
+---
+layout: docs-api
+title: List all group members
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/groups/{id}</pre><p>Returns all the <a href="/docs/api/people.md">people</a> in the specified group, in arbitrary order.</p>
+<h1> Request</h1>
+<p>This is a GET request with the following parameters:</p>
+
+
+<table class="fields"><tr><td class="code"><code>limit</code></td><td class="code"><code>&lt;int></code></td><td><p>The maximum number of people to be returned.</p>
+</td></tr><tr><td class="code"><code>offset</code></td><td class="code"><code>&lt;int></code></td><td><p>The number of people to be skipped.</p>
+</td></tr></table>
+
+<h1> Response</h1>
+<p>This is a <a href="/docs/api/concepts/read-only.htm">read-only</a> request that always responds <code>200 OK</code> and the following fields:</p>
+
+
+<table class="fields"><tr><td class="code"><code>list</code></td><td class="code"><code>&lt;person> array</code></td><td><p>A list of <a href="/docs/api/people/person.htm">short profiles</a>.</p>
+</td></tr><tr><td class="code"><code>count</code></td><td class="code"><code>&lt;int></code></td><td><p>The total number of members in the group.</p>
+</td></tr></table>
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0Et4X0016om/groups/0Et9j0026rO?limit=3&offset=213
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK 
+Content-Type: application/json
+
+{ "list" : [ 
+  { "id" : "0SNQe00311H",
+    "label" : "George Sand",
+    "gender" : "f",
+    "pic" : "https://www.gravatar.com/avatar/1ed54d253636f5b33eff32c2d5573f70" },
+  { "id" : "0SNQg00511H",
+    "label" : "Victor Hugo",
+    "gender" : "m",
+    "pic" : "https://www.gravatar.com/avatar/5a31b00f649489a9a24d3dc3e8b28061"} ],
+  "count" : 215 }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow acting as the viewer.</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the viewer does not have <b>list</b> access to the group.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist,</li>
+  <li> if group <code>{id}</code> does not exist in the database.</li>
+  <li> if the viewer does not have at least <b>view</b> access to the group, to ensure <a href="/docs/api/concepts/absence-equivalence.md">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>Viewing group members requires <b>list</b> access to that group.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">List all group members</span></nav>

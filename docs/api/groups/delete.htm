@@ -1,0 +1,47 @@
+---
+layout: docs-api
+title: Delete a group
+---
+<div id="body">
+<pre class="subtitle">DELETE /db/{db}/groups/{id}</pre><p>Deletes a group from the database forever. The people remain in the database, but their membership (to the deleted group) is forgotten.</p>
+<h1> Response</h1>
+<p>Always returns <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/delayed.htm">delayed</a>, <a href="/docs/api/concepts/idempotent.md">idempotent</a> request.</p>
+<p>The response contains a single field:</p>
+
+
+<table class="fields"><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td><p>The <a href="/docs/api/concepts/delayed.htm">clock position</a> when all the removed people will disappear in the group.</p>
+</td></tr></table>
+
+<h1> Examples</h1>
+
+
+<p class="caption">Example request</p><pre class="api">
+DELETE /db/0SNQc00211H/groups/0SNQe0032JZ
+Content-Type: application/json
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted
+Content-Type: application/json
+
+{ "at": {"1":113} }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow acting as <code>{as}</code></li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if person <code>{as}</code> does not have at least <b>admin</b> access to group <code>{id}</code></li>
+  <li> when attempting to delete group <a href="/docs/api/groups/admin.htm"><code>admin</code></a></li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if group <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if person <code>{as}</code> does not have at least <b>view</b> access to group <code>{id}</code>, to ensure <a href="/docs/api/concepts/absence-equivalence.htm">absence equivalence</a></li>
+</ul><h1> Access restrictions</h1>
+<p>The <b>admin</b> <a href="/docs/api/groups/audience.htm">access level</a> is required to delete a group. The <a href="/docs/api/groups/admin.htm"><code>admin</code></a> group may not be deleted.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/groups.htm">Groups</a></li></ul><span class="active">Delete a group</span></nav>
