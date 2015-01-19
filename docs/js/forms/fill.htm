@@ -1,0 +1,51 @@
+---
+layout: docs-js
+title: Fill a form
+---
+<div id="body">
+<pre class="subtitle">method RunOrg.Form.Filled.Save</pre><p>If <code>filled</code> is an instance of <a href="/docs/js/forms/filled.htm"><code>RunOrg.Form.Filled</code></a>, then <code>filled.Save()</code> uploads its non-<code>id</code> fields to the server.</p>
+<p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to the <code>filled</code> object.</p>
+
+
+<p class="caption">Example usage</p><pre class="js">
+
+var form_id = "1ax69bfa335";
+var owner_id = "0Et9j0026rO";
+
+var form = new RunOrg.Form(form_id);
+var filled = form.Fill(owner_id);
+
+filled.data = { "color" : "red" };
+
+filled.Save().then(function() {
+  console.log("Form was filled.");
+});
+</pre>
+
+<p><b>Note</b>: it is not necessary to <code>Load()</code> either the form or the filled-form first.</p>
+<p>The following properties are sent to the server:</p>
+
+
+<h1> Errors</h1>
+<h2> Returns <code>400 Bad Request</code></h2>
+<ul>
+  <li> if a required field was not provided or is <code>null</code>, <code>&quot;&quot;</code>, <code>[]<code> or </code>{}<code>.</li>
+  <li> if a provided field does not exist in the form.</li>
+  <li> if a provided field was not in the expected data format.</li>
+</ul><h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not grant access as the named person, or no token was provided</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if person <code>{as}</code> is can view the form, but not fill the requested instance. For instance, without <b>admin</b> access, a person may only fill the instance bound to himself (<code>{owner} == {as}</code>), and not to other persons. Access restrictions are defined for each type of owner.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if form <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if person <code>{as}</code> is not allowed to view form <code>{id}</code>, to ensure <a href="/docs/js/concepts/absence-equivalence.htm">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>Person must have the <b>fill</b> <a href="/docs/js/forms/audience.htm">access level</a> access to the form, and be able to fill the instance.</p>
+<p>When owners are people, an instance may be filled only by its owner or by a person with <b>admin</b> access level.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/forms.htm">Forms</a></li><li><a href="/docs/js/forms/filled.htm">A filled instance of a form</a></li></ul><span class="active">Fill a form</span></nav>

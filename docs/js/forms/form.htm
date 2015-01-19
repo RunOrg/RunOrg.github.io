@@ -3,7 +3,8 @@ layout: docs-js
 title: An individual form and its fields
 ---
 <div id="body">
-<pre class="subtitle">class RunOrg.Form</pre><p>Returned by most API methods that involve groups. It is intended to provide data relevant for displaying the group: its label and count.</p>
+<pre class="subtitle">class RunOrg.Form</pre><p>Returned by several API methods that involve forms. In addition to a label and custom JSON, it determines the behaviour of a form: what the fields are and who is allowed to fill it.</p>
+<p>A form may be filled several times, each is called a <b>filled form instance</b> and is bound to an owner.</p>
 <p>This object is <a href="/docs/js/concepts/viewer-dependent.htm">viewer-dependent</a>: its contents depend on the identity of the viewer.</p>
 
 
@@ -46,6 +47,6 @@ title: An individual form and its fields
 <h1> Class methods</h1>
 
 
-<table class="files"><tr><td class="code"><code>method RunOrg.Form.Create</code></td><td><a href="/docs/js/forms/create.htm">Create a form</a></td></tr><tr><td class="code"><code>static RunOrg.Form.List</code></td><td><a href="/docs/js/forms/list.htm">List all forms in the database</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Save</code></td><td><a href="/docs/js/forms/update.htm">Read form meta-data</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Load</code></td><td><a href="/docs/js/forms/get.htm">Read form meta-data</a></td></tr></table>
+<table class="files"><tr><td class="code"><code>method RunOrg.Form.Create</code></td><td><a href="/docs/js/forms/create.htm">Create a form</a></td></tr><tr><td class="code"><code>static RunOrg.Form.List</code></td><td><a href="/docs/js/forms/list.htm">List all forms in the database</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Save</code></td><td><a href="/docs/js/forms/update.htm">Update form meta-data</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Fill</code></td><td><a href="/docs/js/forms/jsfill.htm">Reference a filled instance</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Load</code></td><td><a href="/docs/js/forms/get.htm">Read form meta-data</a></td></tr></table>
 </div>
 <nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/forms.htm">Forms</a></li></ul><span class="active">An individual form and its fields</span></nav>

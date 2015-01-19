@@ -1,0 +1,45 @@
+---
+layout: docs-api
+title: Read a filled form
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/forms/{id}/filled/{owner}</pre><p>Returns the data entered into an instance of form <code>{id}</code> bound to entity <code>{owner}</code>.</p>
+
+
+<table class="fields"><tr><td class="code"><code>owner</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the owner of this filled instance.</p>
+</td></tr><tr><td class="code"><code>data</code></td><td class="code"><code>&lt;dictionary></code></td><td><p>Maps field names (as they are defined in the form itself) to arbitrary JSON values which will be saved by RunOrg. The contents of each field depend on the <a href="/docs/api/forms/field.htm">configuration</a> of that field.</p>
+</td></tr></table>
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0SNQc00211H/forms/0SNQe0032JZ/filled/0SNxd0002JZ?as=0SNxd0002JZ
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK
+Content-Type: application/json 
+
+{ "data": {
+    "color": "orange",
+    "born" : "1985-04-18" },
+  "owner": "0SNxd0002JZ" }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not grant access as the requester</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the requester is can view the form, but not the requested instance. For instance, without <b>admin</b> access, a person may only view the instance bound to himself (<code>{owner} == {as}</code>), and not to other persons. Access restrictions are defined for each type of owner.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if form <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if form <code>{id}</code> has not been filled for entity <code>{owner}</code>.</li>
+  <li> if the requester is not allowed to view form <code>{id}</code>, to ensure <a href="/docs/api/concepts/absence-equivalence.htm">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>Person must have the <b>fill</b> <a href="/docs/api/forms/audience.htm">access level</a> access to the form, and be able to view the instance.</p>
+<p>When owners are people, an instance may be viewed only by its owner or by a person with <b>admin</b> access level.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Read a filled form</span></nav>

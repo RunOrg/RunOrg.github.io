@@ -7,20 +7,39 @@ title: Read form meta-data
 
 
 <p class="caption">Example request</p><pre class="api">
-PUT /db/0SNQc00211H/forms/0SNQe0032JZ
+GET /db/0SNQc00211H/forms/0SNQe0032JZ
 Content-Type: application/json
 
-{ "label" : "Personal information", 
-  "audience" : {
-    "admin": {},
-    "fill": { groups: [ "0SNQe0032JZ" ] } } }
 </pre>
 
 <p class="caption">Example response</p><pre class="api">
-202 Accepted
+200 OK
 Content-Type: application/json
- 
-{ "at" : {"2":219} }  
+
+{ "id" : "0SNQe0032JZ",
+  "label" : "Personal information", 
+  "owner" : "person",
+  "custom" : null,
+  "fields" : [ {
+    "id" : "1",
+    "label" : "Why did you join our group ?",
+    "kind" : "text",
+    "required" : true
+  }, {
+    "id" : "2", 
+    "label" : "How often do you log in ?",
+    "kind" : "single",
+    "choices" : [
+      "Every day",
+      "Once a week",
+      "Once a month",
+      "Less than once a month" ],
+    "required" : false
+  } ],
+  "access" : [ "admin", "fill" ],
+  "audience" : {
+    "admin": {},
+    "fill": { groups: [ "0SNQe0032JZ" ] } } }
 </pre>
 
 <h1> Errors</h1>

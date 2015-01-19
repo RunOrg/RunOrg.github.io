@@ -1,0 +1,29 @@
+---
+layout: docs-api
+title: A filled instance of a form
+---
+<div id="body">
+<p>A javascript representation of a filled instance of a <a href="/docs/api/forms/form.htm">form</a>.</p>
+<p>This object is <a href="/docs/api/concepts/viewer-dependent.htm">viewer-dependent</a>: its contents depend on the identity of the viewer.</p>
+<p>Use <a href="/docs/api/forms/jsfill.htm">RunOrg.Form.Fill(owner)</a> to create a <code>RunOrg.Form.Filled</code> javascript object, which can then be used to read or write the filled form instance.</p>
+
+
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the form to which this filled instance belongs.</p>
+</td></tr><tr><td class="code"><code>owner</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the owner of this instance (e.g. a person's identifier).</p>
+</td></tr><tr><td class="code"><code>data</code></td><td class="code"><code>&lt;dictionary></code></td><td><p>The form data, maps field names to arbitrary JSON values. See <a href="/docs/api/forms/get-filled.htm">reading</a> and <a href="/docs/api/forms/fill.htm">writing</a> for more information about this field.</p>
+</td></tr></table>
+
+<pre class="json">
+{ "id": "0SNQe0032JZ",
+  "owner": "0Et9j0026rO",
+  "data": { 
+    "color": "Red",
+    "birth": "1985-04-19" } }
+</pre>
+
+<h1> Class methods</h1>
+
+
+<table class="files"><tr><td class="code"><code>PUT /db/{db}/forms/{id}/filled/{owner}</code></td><td><a href="/docs/api/forms/fill.htm">Fill a form</a></td></tr><tr><td class="code"><code>GET /db/{db}/forms/{id}/filled/{owner}</code></td><td><a href="/docs/api/forms/get-filled.htm">Read a filled form</a></td></tr></table>
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">A filled instance of a form</span><ul class="below"><li><a href="/docs/api/forms/fill.htm">Fill a form</a></li></ul></nav>

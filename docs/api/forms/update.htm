@@ -1,10 +1,11 @@
 ---
 layout: docs-api
-title: Read form meta-data
+title: Update form meta-data
 ---
 <div id="body">
 <pre class="subtitle">GET /db/{db}/forms/{id}</pre><p>Updates the properties of a form.</p>
 <p><b>Note</b>: if a form has already been filled (even if only once), the list of fields may not be updated anymore (though other properties can).</p>
+<h1> Request</h1>
 <p>The following properties are expected by the server:</p>
 
 
@@ -17,14 +18,8 @@ title: Read form meta-data
 
 <p class="caption">Example request</p><pre class="api">
 PUT /db/0Et4X0016om/forms/0Et9j0026rO
-</pre>
 
-<p class="caption">Example response</p><pre class="api">
-200 OK 
-Content-Type: application/json
-
-{ "id" : "0SNQe0032JZ",
-  "label" : "Personal information", 
+{ "label" : "Personal information", 
   "owner" : "person",
   "custom" : null,
   "fields" : [ {
@@ -43,14 +38,32 @@ Content-Type: application/json
       "Less than once a month" ],
     "required" : false
   } ],
-  "access" : [ "admin", "fill" ],
   "audience" : {
     "admin": {},
     "fill": { groups: [ "0SNQe0032JZ" ] } } }
 </pre>
 
+<h1> Response</h1>
+<p>Always returns <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/delayed.htm">delayed</a>, <a href="/docs/api/concepts/idempotent.md">idempotent</a> request.</p>
+<p>The response contains a single field:</p>
+
+
+<table class="fields"><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td><p>The <a href="/docs/api/concepts/delayed.htm">clock position</a> when the new data will be available in the form.</p>
+</td></tr></table>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted 
+Content-Type: application/json
+
+{ "at" : {"2":218} }
+</pre>
+
 <h1> Errors</h1>
-<h2> Returns <code>401 Unauthorized</code></h2>
+<h2> Returns <code>400 Bad Request</code></h2>
+<ul>
+  <li> if a mandatory property is missing.</li>
+  <li> if a field is badly configured.</li>
+</ul><h2> Returns <code>401 Unauthorized</code></h2>
 <ul>
   <li> if the provided token does not allow acting as <code>{as}</code>.</li>
 </ul><h2> Returns <code>403 Forbidden</code></h2>
@@ -65,4 +78,4 @@ Content-Type: application/json
 <p>An <a href="/docs/api/forms/audience.htm">access level</a> of <b>admin</b> is required to update form information.</p>
 
 </div>
-<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Read form meta-data</span></nav>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Update form meta-data</span></nav>

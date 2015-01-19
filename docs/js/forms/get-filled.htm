@@ -1,0 +1,55 @@
+---
+layout: docs-js
+title: Read a filled form
+---
+<div id="body">
+<pre class="subtitle">method RunOrg.Form.Filled.Load</pre><p>If <code>filled</code> is an instance of <a href="/docs/js/forms/filled.htm"><code>RunOrg.Form.Filled</code></a>, then <code>filled.Load()</code> reads its contents from the server (if any).</p>
+<p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to the <code>filled</code> object if it could be loaded.</p>
+
+
+<p class="caption">Example usage</p><pre class="js">
+var form = new RunOrg.Form("1ax69bfa335");
+var filled = form.Fill("0SNQe0033JA");
+
+filled.Load().then(function() {
+  console.log("Form instance contains: %o", filled.data);
+});
+</pre>
+
+<p class="caption">Example usage, with error handling</p><pre class="js">
+var form = new RunOrg.Form("1ax69bfa335");
+var filled = form.Fill("0SNQe0033JA");
+
+filled.Load().then(function() {
+  console.log("Form instance contains: %o", filled.data);
+}, function(error) {
+  if (error.HTTP == 404) 
+    console.log("Form not filled for %s.", filled.owner)
+  else 
+    console.log("An error happened: %o", error)
+});
+</pre>
+
+<table class="fields"><tr><td class="code"><code>owner</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the owner of this filled instance.</p>
+</td></tr><tr><td class="code"><code>data</code></td><td class="code"><code>&lt;dictionary></code></td><td><p>Maps field names (as they are defined in the form itself) to arbitrary JSON values which will be saved by RunOrg. The contents of each field depend on the <a href="/docs/js/forms/field.htm">configuration</a> of that field.</p>
+</td></tr></table>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not grant access as the requester</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the requester is can view the form, but not the requested instance. For instance, without <b>admin</b> access, a person may only view the instance bound to himself (<code>{owner} == {as}</code>), and not to other persons. Access restrictions are defined for each type of owner.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if form <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if form <code>{id}</code> has not been filled for entity <code>{owner}</code>.</li>
+  <li> if the requester is not allowed to view form <code>{id}</code>, to ensure <a href="/docs/js/concepts/absence-equivalence.htm">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>Person must have the <b>fill</b> <a href="/docs/js/forms/audience.htm">access level</a> access to the form, and be able to view the instance.</p>
+<p>When owners are people, an instance may be viewed only by its owner or by a person with <b>admin</b> access level.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/forms.htm">Forms</a></li></ul><span class="active">Read a filled form</span></nav>
