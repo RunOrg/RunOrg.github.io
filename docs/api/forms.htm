@@ -1,0 +1,22 @@
+---
+layout: docs-api
+title: Forms
+---
+<div id="body">
+<p>A <b>form</b> is a list of fields that can be filled by people. A single form can be filled several times, with each instance being tied to a separate <b>owner</b> (for instance, if a form is configured so that its owners are people, then each person can fill their own instance of the form).</p>
+<p>A form contains one or more fields.</p>
+
+
+<table class="files"><tr><td class="code"><code>type &lt;form.field></code></td><td><a href="/docs/api/forms/field.htm">A field in a form</a></td></tr></table>
+
+<p>The following endpoints are used to create and manipulate the forms themselves.</p>
+
+
+<table class="files"><tr><td class="code"><code>type &lt;form></code></td><td><a href="/docs/api/forms/form.htm">An individual form and its fields</a></td></tr><tr><td class="code"><code>POST /db/{db}/forms</code></td><td><a href="/docs/api/forms/create.htm">Create a form</a></td></tr><tr><td class="code"><code>GET /db/{db}/forms</code></td><td><a href="/docs/api/forms/list.htm">List all forms in the database</a></td></tr><tr><td class="code"><code>GET /db/{db}/forms/{id}</code></td><td><a href="/docs/api/forms/update.htm">Read form meta-data</a></td></tr><tr><td class="code"><code>GET /db/{db}/forms/{id}</code></td><td><a href="/docs/api/forms/get.htm">Read form meta-data</a></td></tr></table>
+
+<p>The following endpoints are intended to fill a form and retrieve the filled-in data.</p>
+
+
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li></ul><span class="active">Forms</span><ul class="below"><li><a href="/docs/api/forms/form.htm">An individual form and its fields</a></li><li><a href="/docs/api/forms/create.htm">Create a form</a></li><li><a href="/docs/api/forms/audience.htm">Form audience and access levels</a></li><li><a href="/docs/api/forms/list.htm">List all forms in the database</a></li><li><a href="/docs/api/forms/field.htm">A field in a form</a></li><li><a href="/docs/api/forms/update.htm">Read form meta-data</a></li><li><a href="/docs/api/forms/get.htm">Read form meta-data</a></li></ul></nav>

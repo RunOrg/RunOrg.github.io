@@ -1,0 +1,92 @@
+---
+layout: docs-api
+title: A field in a form
+---
+<div id="body">
+<pre class="subtitle">type &lt;form.field></pre><p>RunOrg handles <a href="/docs/api/forms.htm">forms</a> as collections of fields. An individual field carries meta-data that tells the client how it should be displayed, and tells the server how it should be validated (when a form is filled) and summarized (for generating form-level statistics).</p>
+<p>A field is represented as a JSON dictionary with the following keys:</p>
+
+
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>An alphanumeric identifier, between 1 and 11 characters long. Two fields in the same form should have different identifiers.</p>
+</td></tr><tr><td class="code"><code>label</code></td><td class="code"><code>&lt;label></code></td><td><p>A human-readable label to be displayed along with the field by the client application.</p>
+</td></tr><tr><td class="code"><code>kind</code></td><td class="code"><code>&lt;string></code></td><td><p>Described the kind of field (text, date, single choice, etc). Read more about individual field kinds below.</p>
+</td></tr><tr><td class="code"><code>choices</code></td><td class="code"><code>&lt;json> array</code></td><td><p>An optional list of choices (treated as empty if missing). Only used by fields of kind <code>&quot;single&quot;</code> and <code>&quot;multiple&quot;</code>.</p>
+</td></tr><tr><td class="code"><code>custom</code></td><td class="code"><code>&lt;json></code></td><td><p>An optional, arbitrary chunk of JSON that is stored by RunOrg and returned as-is by the API. The client applications may use this to configure the display and behavior of the form.</p>
+</td></tr><tr><td class="code"><code>required</code></td><td class="code"><code>&lt;bool></code></td><td><p>An optional flag (default is false) that marks the field as mandatory. The meaning of this requirement depends on the field kind (see below).</p>
+</td></tr></table>
+
+<p>Some kinds of fields (namely, the multiple-choice and single-choice fields) will use a list of possible choices. These choices are numbered on their position (starting with zero).</p>
+<p>A choice may be either a string representing a <a href="/docs/api/docs/#/types/label.js">human-readable label</a>, or an arbitrary blob of JSON that will be stored and returned as-is by the API.</p>
+<h1> Text fields: <code>&quot;text&quot;</code></h1>
+<p>A standard text field, designed to contain unformatted text. Usually rendered as a <code>&lt;input type=&quot;text&quot;/&gt;</code> or <code>&lt;textarea&gt;&lt;/textarea&gt;</code> in HTML.</p>
+
+
+<p class="caption">Example value</p><pre class="json">
+"Hello, world!"
+</pre>
+
+<p>Acceptable values are JSON strings and <code>null</code>. When marked as <code>required</code>, acceptable values are non-empty JSON strings.</p>
+<h1> Rich text fields: <code>&quot;rich&quot;</code></h1>
+<p>A rich text field, designed to contain HTML-formatted text (more specifically, a RunOrg-specific <a href="/docs/api/concepts/rich.htm">subset of HTML</a>). Usually rendered as a WYSIWYG textarea.</p>
+
+
+<p class="caption">Example value</p><pre class="json">
+"<h1>This is a title</h1><p>This is a <strong>bold</strong> paragraph</p>" 
+</pre>
+
+<p>Acceptable values are JSON strings (containing appropriately-formated rich text) and <code>null</code>. When marked as <code>required</code>, acceptable values are non-empty JSON strings.</p>
+<h1> Date/time fields: <code>&quot;time&quot;</code></h1>
+<p>A date or date-time field. Usually rendered as a <code>&lt;input type=&quot;date&quot;&gt;</code> or <code>&lt;input type=&quot;datetime&quot;&gt;</code> in HTML5.</p>
+
+
+<p class="caption">Example value</p><pre class="json">
+"2014-04-19T18:42:53Z"
+</pre>
+
+<p>Acceptable values are <a href="/docs/api/concepts/time.js">dates</a>: JSON strings containing an ISO-8601 formatted date (<code>yyyy-mm-dd</code>) or date-time (<code>yyyy-mm-ddThh:ii:ssZ</code>), or <code>null</code>. When marked as <code>required</code>, only dates are acceptable values.</p>
+<h1> Single choice field: <code>&quot;single&quot;</code></h1>
+<p>A single-choice question. Uses the list of <code>choices</code> to determine what the possible choices are. Usually rendered as a list of <code>&lt;input type=&quot;radio&quot;/&gt;</code> or a <code>&lt;select&gt;&lt;/select&gt;</code> field.</p>
+
+
+<p class="caption">Example value</p><pre class="json">
+2
+</pre>
+
+<p>Aceptable values are integers between <code>0</code> and <code>n-1</code> (with <code>n</code> being the number of possible choices), representing the picked choice. <code>null</code> is also a possible value, unless the field is marked as <code>required</code>.</p>
+<h1> Multiple choice field: <code>&quot;multiple&quot;</code></h1>
+<p>A multiple choice question. Uses the list of <code>choices</code> to determine what the possible choices are. Usually rendered as a list of <code>&lt;input type=&quot;checkbox&quot;/&gt;</code> fields.</p>
+
+
+<p class="caption">Example value</p><pre class="json">
+[2,4]
+</pre>
+
+<p>Acceptable values are lists of integers between <code>0</code> and <code>n-1</code> (with <code>n</code> being the number of possible choices), representing all the picked choices. There is no restriction on how many times a given choice can appear, though when returned by the API, each choice will appear no more than once. <code>null</code> is also a possible value.</p>
+<p>When marked as <code>required</code>, the field will accept neither <code>null</code> nor <code>[]<code>.</p>
+<h1> Arbitrary JSON fields: <code>&quot;json&quot;</code></h1>
+<p>A custom field, for your convenience. Stores arbitrary JSON data and returns it as-is. No server-side processing will occur (including statistics).</p>
+
+
+<p class="caption">Example value</p><pre class="json"> 
+{ "PayerID" : 185530,
+  "BeneficiaryID" : 185530,
+  "Amount" : 2000,
+  "PayerWalletID" : 0,
+  "BeneficiaryWalletID" : 196902 }
+</pre>
+
+<p>Any JSON value is acceptable. When the field is marked as <code>required</code>, however, the following values are not acceptable: <code>null</code>, <code>&quot;&quot;</code>, <code>[]<code> and </code>{}<code>.</p>
+<h1> Person fields: <code>&quot;person&quot;</code></h1>
+<p>A field that references a person in the current database, through its identifier. Usually displayed as an auto-completion component that uses the <a href="/docs/api/docs/#/people/search.js">search API</a> to find person identifiers.</p>
+
+
+<p class="caption">Example value</p><pre class="json">
+"0SNQg00511H"
+</pre>
+
+<p>Acceptable values are person identifiers that match a person in the current database. If the field is not marked as <code>required</code>, then <code>null</code> is also an acceptable value.</p>
+<h1> More field types</h1>
+<p>Currently, there are plans for new field types to be implemented. More will become available in time.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">A field in a form</span></nav>

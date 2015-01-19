@@ -1,0 +1,33 @@
+---
+layout: docs-js
+title: List all forms in the database
+---
+<div id="body">
+<pre class="subtitle">static RunOrg.Form.List</pre><p><code>RunOrg.Form.List(limit, offset)</code> reads <code>limit</code> groups from the database, starting at <code>offset</code>. The order is unspecified but consistent.</p>
+<p>Only groups for which the viewer has <b>view</b> access will be included in the list.</p>
+<p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to a list of filled <a href="/docs/js/forms/form.htm"><code>RunOrg.Form</code></a> instances, with two major differences:</p>
+<ul>
+  <li> Members <code>custom</code> and <code>audience</code> are not returned.</li>
+  <li> Member <code>fields</code> is replaced by the number of fields.</li>
+</ul>
+
+
+<p class="caption">Example usage</p><pre class="js">
+RunOrg.Form.List(10, 0).then(function(list) {
+  for (var i = 0; i < list.length; ++i) 
+    console.log("Form %s has %d fields", list[i].id, list[i].fields)    
+})			 
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token and viewer do not match.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Anyone can retrieve results from this API, though only forms that the viewer has <b>fill</b> access to will be returned.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/forms.htm">Forms</a></li></ul><span class="active">List all forms in the database</span></nav>

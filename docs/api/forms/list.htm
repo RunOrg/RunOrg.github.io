@@ -1,0 +1,52 @@
+---
+layout: docs-api
+title: List all forms in the database
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/forms</pre><p>Returns all the forms in the database, in an unspecified but consistent order, with <a href="/docs/api/concepts/pagination.htm">pagination</a>.</p>
+<p>Only forms for which the viewer has <b>fill</b> access will be included in the list.</p>
+<p>The response contains a single field:</p>
+
+
+
+
+<p>The array contains <a href="/docs/api/forms/form.htm"><code>forms</code></a>, with two major differences:</p>
+<ul>
+  <li> Members <code>custom</code> and <code>audience</code> are not returned.</li>
+  <li> Member <code>fields</code> is replaced by the number of fields.</li>
+</ul>
+
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0SNQc00211H/forms?limit=3&offset=16
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK
+Content-Type: application/json 
+
+{ "list" : [ 
+  { "id" : "0SNQe00311H",
+    "owner" : "person",
+    "label" : "Why did you join our group ?", 
+    "fields" : 2,
+    "access" : ["fill"] },
+  { "id" : "0SNQg00511H",
+    "label" : null,
+    "owner" : "person", 
+    "fields" : 1,
+    "pic" : ["admin","fill"] }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token and viewer do not match.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Anyone can retrieve results from this API, though only forms that the viewer has <b>fill</b> access to will be returned.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">List all forms in the database</span></nav>

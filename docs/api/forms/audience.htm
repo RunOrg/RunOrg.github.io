@@ -1,0 +1,28 @@
+---
+layout: docs-api
+title: Form audience and access levels
+---
+<div id="body">
+<pre class="subtitle">type &lt;form.audience></pre><p>This is an <a href="/docs/api/concepts/audience.htm">audience</a> that describes the access levels supported by forms.</p>
+
+
+<p class="caption">Example audience</p><pre class="json">
+"audience" : {
+  "admin": {},
+  "fill": "anyone"
+}
+</pre>
+
+<h1> Administrating the form: <code>&quot;admin&quot;</code></h1>
+<p>The <b>admin</b> access allows any operations that can be performed on the form.</p>
+<p>It includes <b>fill</b> access.</p>
+<h1> Filling the form: <code>&quot;fill&quot;</code></h1>
+<p>The <b>fill</b> access allows:</p>
+<ul>
+  <li> Reading a form's meta-data (but not all fields)</li>
+  <li> Filling the form. Which instances can be filled depends on the ownership of those instances. For <code>&quot;contact&quot;</code> ownership, for example, a contact may only fill his own instance.</li>
+  <li> Viewing any filled form instance they can re-fill.</li>
+</ul>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Form audience and access levels</span></nav>

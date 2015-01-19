@@ -1,0 +1,36 @@
+---
+layout: docs-js
+title: Create an API key
+---
+<div id="body">
+<pre class="subtitle">method RunOrg.Key.Create</pre><p>After assigning a new instance of <code>RunOrg.Key</code> to variable <code>key</code>, <code>key.Create()</code> will attempt to create a new <a href="/docs/js/keys.htm">key</a> on the server from that object.</p>
+<p>Returns a <a href="/docs/js/concepts/promise.htm">promise</a> that will resolve to the updated <code>key</code> object after creation is complete.</p>
+<p>The following fields are expected.</p>
+
+
+<table class="fields"><tr><td class="code"><code>key</code></td><td class="code"><code>&lt;hex>, null</code></td><td><p>The key to be added to the database, encoded as a hexadecimal string.</p>
+</td></tr><tr><td class="code"><code>hash</code></td><td class="code"><code>"SHA-1"</code></td><td><p>The hash algorithm to be used when computing HMAC based on this function. Currently, only <code>&quot;SHA-1&quot;</code> is supported.</p>
+</td></tr><tr><td class="code"><code>encoding</code></td><td class="code"><code>"hex"</code></td><td><p>The encoding used for the key. Currently, only <code>&quot;hex&quot;</code> is supported.</p>
+</td></tr></table>
+
+<p>For SHA-1, the recommended key length is 64 bytes, which translates to 128 hex characters. You may use shorter keys (they will be padded with zeros). Longer keys are not currently supported.</p>
+
+
+<p>Once the key is created, its <code>id</code> field contains the <b>key-id</b> to be used when authenticating requests.</p>
+
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not match the <code>{as}</code> contact.</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the provided <code>{as}</code> may not create keys.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Only <a href="/docs/js/groups/admin.htm">database administrators</a> may create new keys.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/keys.htm">Keys</a></li></ul><span class="active">Create an API key</span></nav>

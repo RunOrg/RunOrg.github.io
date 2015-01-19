@@ -1,0 +1,68 @@
+---
+layout: docs-api
+title: Read form meta-data
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/forms/{id}</pre><p>Updates the properties of a form.</p>
+<p><b>Note</b>: if a form has already been filled (even if only once), the list of fields may not be updated anymore (though other properties can).</p>
+<p>The following properties are expected by the server:</p>
+
+
+<table class="fields"><tr><td class="code"><code>label</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>An optional human-readable name.</p>
+</td></tr><tr><td class="code"><code>custom</code></td><td class="code"><code>&lt;json></code></td><td><p>An arbitrary block of JSON that will be stored as-is by RunOrg and returned as such by the API.</p>
+</td></tr><tr><td class="code"><code>owner</code></td><td class="code"><code>&lt;owner></code></td><td><p>The nature of the owners associated with each filled instance of the form. In the current version of the API, this is always <code>&quot;person&quot;</code> (each instance is owned by a person).</p>
+</td></tr><tr><td class="code"><code>fields</code></td><td class="code"><code>&lt;field> array</code></td><td><p>An ordered list of <a href="/docs/api/forms/field.htm">fields</a> to be filled.</p>
+</td></tr><tr><td class="code"><code>audience</code></td><td class="code"><code>&lt;audience></code></td><td><p>The <a href="/docs/api/forms/audience.htm">audience</a> of the form.</p>
+</td></tr></table>
+
+<p class="caption">Example request</p><pre class="api">
+PUT /db/0Et4X0016om/forms/0Et9j0026rO
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK 
+Content-Type: application/json
+
+{ "id" : "0SNQe0032JZ",
+  "label" : "Personal information", 
+  "owner" : "person",
+  "custom" : null,
+  "fields" : [ {
+    "id" : "1",
+    "label" : "Why did you join our group ?",
+    "kind" : "text",
+    "required" : true
+  }, {
+    "id" : "2", 
+    "label" : "How often do you log in ?",
+    "kind" : "single",
+    "choices" : [
+      "Every day",
+      "Once a week",
+      "Once a month",
+      "Less than once a month" ],
+    "required" : false
+  } ],
+  "access" : [ "admin", "fill" ],
+  "audience" : {
+    "admin": {},
+    "fill": { groups: [ "0SNQe0032JZ" ] } } }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow acting as <code>{as}</code>.</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the requester does not have <b>admin</b> access to the form.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist,</li>
+  <li> if form <code>{id}</code> does not exist in the database,</li>
+  <li> if person <code>{as}</code> does not have at least <b>fill</b> access to form <code>{id}</code>, to ensure <a href="/docs/api/concepts/absence-equivalence.md">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>An <a href="/docs/api/forms/audience.htm">access level</a> of <b>admin</b> is required to update form information.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Read form meta-data</span></nav>

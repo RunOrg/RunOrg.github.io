@@ -1,0 +1,59 @@
+---
+layout: docs-api
+title: Create an API key
+---
+<div id="body">
+<pre class="subtitle">POST /db/{db}/keys</pre><p>Create a new <a href="/docs/api/keys.htm">key</a> on the server.</p>
+<h1> Request</h1>
+<p>The following fields are expected.</p>
+
+
+<table class="fields"><tr><td class="code"><code>key</code></td><td class="code"><code>&lt;hex>, null</code></td><td><p>The key to be added to the database, encoded as a hexadecimal string.</p>
+</td></tr><tr><td class="code"><code>hash</code></td><td class="code"><code>"SHA-1"</code></td><td><p>The hash algorithm to be used when computing HMAC based on this function. Currently, only <code>&quot;SHA-1&quot;</code> is supported.</p>
+</td></tr><tr><td class="code"><code>encoding</code></td><td class="code"><code>"hex"</code></td><td><p>The encoding used for the key. Currently, only <code>&quot;hex&quot;</code> is supported.</p>
+</td></tr></table>
+
+<p>For SHA-1, the recommended key length is 64 bytes, which translates to 128 hex characters. You may use shorter keys (they will be padded with zeros). Longer keys are not currently supported.</p>
+
+
+<p class="caption">Example request</p><pre class="api">
+POST /db/0SNQc00211H/keys
+Content-Type: application/json
+
+{ "hash": "SHA-1",
+  "key": "74e6f7298a9c2d168935f58c001bad88",
+  "encoding": "hex" }
+</pre>
+
+<h1> Response</h1>
+<p>Alwys returns <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/delayed.htm">delayed</a> request.</p>
+<p>The response contains the following fields:</p>
+
+
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>The <b>key-id</b> to be used when authenticating requests.</p>
+</td></tr><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td><p>The <a href="/docs/api/concepts/delayed.htm">clock position</a> when the key will be available for use.</p>
+</td></tr></table>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted
+Content-Type: application/json
+ 
+{ "id" : "0Et9j0026rO",
+  "at" : {"2":218} }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not match the <code>{as}</code> contact.</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the provided <code>{as}</code> may not create keys.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+</ul><h1> Access restrictions</h1>
+<p>Only <a href="/docs/api/groups/admin.htm">database administrators</a> may create new keys.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/keys.htm">Keys</a></li></ul><span class="active">Create an API key</span></nav>

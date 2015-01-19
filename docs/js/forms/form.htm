@@ -1,0 +1,51 @@
+---
+layout: docs-js
+title: An individual form and its fields
+---
+<div id="body">
+<pre class="subtitle">class RunOrg.Form</pre><p>Returned by most API methods that involve groups. It is intended to provide data relevant for displaying the group: its label and count.</p>
+<p>This object is <a href="/docs/js/concepts/viewer-dependent.htm">viewer-dependent</a>: its contents depend on the identity of the viewer.</p>
+
+
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id></code></td><td><p>The identifier of the form.</p>
+</td></tr><tr><td class="code"><code>owner</code></td><td class="code"><code>"person"</code></td><td><p>The nature of the owner associated with each filled instance of the form. In the current version of the API, this is always <code>&quot;person&quot;</code> (each instance is owned by a person).</p>
+</td></tr><tr><td class="code"><code>label</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>An optional human-readable label.</p>
+</td></tr><tr><td class="code"><code>fields</code></td><td class="code"><code>&lt;field> array</code></td><td><p>An ordered list of <a href="/docs/js/forms/field.htm">fields</a> to be filled.</p>
+</td></tr><tr><td class="code"><code>custom</code></td><td class="code"><code>&lt;json></code></td><td><p>An arbitrary block of JSON provided by the creator of the form, and returned as-is by the API.</p>
+</td></tr><tr><td class="code"><code>access</code></td><td class="code"><code>&lt;access> array</code></td><td><p>The list of access levels the viewer has over the form. See <a href="/docs/js/concepts/audience.htm">audience and access</a> for more information.</p>
+</td></tr><tr><td class="code"><code>audience</code></td><td class="code"><code>&lt;audience></code></td><td><p>Only available to viewers with access level <b>admin</b>. The <a href="/docs/js/forms/audience.htm">audience</a> of the form.</p>
+</td></tr></table>
+
+<pre class="json">
+{ "id" : "0SNQe0032JZ",
+  "label" : "Personal information", 
+  "owner" : "person",
+  "custom" : null,
+  "fields" : [ {
+    "id" : "1",
+    "label" : "Why did you join our group ?",
+    "kind" : "text",
+    "required" : true
+  }, {
+    "id" : "2", 
+    "label" : "How often do you log in ?",
+    "kind" : "single",
+    "choices" : [
+      "Every day",
+      "Once a week",
+      "Once a month",
+      "Less than once a month" ],
+    "required" : false
+  } ],
+  "access" : [ "admin", "fill" ],
+  "audience" : {
+    "admin": {},
+    "fill": { groups: [ "0SNQe0032JZ" ] } } }
+</pre>
+
+<h1> Class methods</h1>
+
+
+<table class="files"><tr><td class="code"><code>method RunOrg.Form.Create</code></td><td><a href="/docs/js/forms/create.htm">Create a form</a></td></tr><tr><td class="code"><code>static RunOrg.Form.List</code></td><td><a href="/docs/js/forms/list.htm">List all forms in the database</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Save</code></td><td><a href="/docs/js/forms/update.htm">Read form meta-data</a></td></tr><tr><td class="code"><code>method RunOrg.Form.Load</code></td><td><a href="/docs/js/forms/get.htm">Read form meta-data</a></td></tr></table>
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/forms.htm">Forms</a></li></ul><span class="active">An individual form and its fields</span></nav>

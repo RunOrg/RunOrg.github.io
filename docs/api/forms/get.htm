@@ -1,0 +1,39 @@
+---
+layout: docs-api
+title: Read form meta-data
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/forms/{id}</pre><p>Returns a <a href="/docs/api/forms/form.htm"><code>&lt;form&gt;</code></a> representation of the form with identifier <code>{id}</code> in database <code>{db}</code>.</p>
+
+
+<p class="caption">Example request</p><pre class="api">
+PUT /db/0SNQc00211H/forms/0SNQe0032JZ
+Content-Type: application/json
+
+{ "label" : "Personal information", 
+  "audience" : {
+    "admin": {},
+    "fill": { groups: [ "0SNQe0032JZ" ] } } }
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted
+Content-Type: application/json
+ 
+{ "at" : {"2":219} }  
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not allow acting as <code>{as}</code>.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist,</li>
+  <li> if form <code>{id}</code> does not exist in the database,</li>
+  <li> if person <code>{as}</code> does not have at least <b>fill</b> access to form <code>{id}</code>, to ensure <a href="/docs/api/concepts/absence-equivalence.md">absence equivalence</a>.</li>
+</ul><h1> Access restrictions</h1>
+<p>An <a href="/docs/api/forms/audience.htm">access level</a> of <b>fill</b> is required to view form information.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Read form meta-data</span></nav>

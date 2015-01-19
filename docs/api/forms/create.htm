@@ -1,0 +1,79 @@
+---
+layout: docs-api
+title: Create a form
+---
+<div id="body">
+<pre class="subtitle">POST /db/{db}/forms</pre><p>Attempts to create a new form. The following fields are expected:</p>
+
+
+<table class="fields"><tr><td class="code"><code>id</code></td><td class="code"><code>&lt;id>, null</code></td><td><p>The identifier of the form in the database. If provided, the request is performed in <b>force-id</b> mode (see below), otherwise it is performed in <b>generate-id</b> mode.</p>
+</td></tr><tr><td class="code"><code>label</code></td><td class="code"><code>&lt;label>, null</code></td><td><p>An optional human-readable label.</p>
+</td></tr><tr><td class="code"><code>custom</code></td><td class="code"><code>&lt;json></code></td><td><p>An optional, arbitrary block of JSON that will be stored by RunOrg and returned as-is by the API.</p>
+</td></tr><tr><td class="code"><code>owner</code></td><td class="code"><code>"person"</code></td><td><p>The nature of the owners associated with each filled instance. In the current version of the API, this is always <code>&quot;person&quot;</code>.</p>
+</td></tr><tr><td class="code"><code>fields</code></td><td class="code"><code>&lt;field> array</code></td><td><p>An ordered list of <a href="/docs/api/forms/field.htm">fields</a> to be filled.</p>
+</td></tr><tr><td class="code"><code>audience</code></td><td class="code"><code>&lt;audience>, null</code></td><td><p>The initial audience of the form. See <a href="/docs/api/forms/audience.htm">audience and access</a> for more information.</p>
+</td></tr></table>
+
+<p>The behaviour of the request depends on whether an identifier was provided: <b>force-id</b> mode or <b>generate-id</b> mode.</p>
+<h1> Force-id mode</h1>
+<p>RunOrg will attempt to create aform with that identifier, and do nothing if the form already exists (<a href="/docs/api/concepts/idempotent.htm">idempotent</a> request).</p>
+<h1> Generate-id mode</h1>
+<p>RunOrg will create brand new form, with a brand new identifier. Running the request again with the same parameters will create another form.</p>
+
+
+<p class="caption">Example request</p><pre class="api">
+POST /db/0SNQc00211H/forms
+Content-Type: application/json
+
+{ "label" : "Personal information", 
+  "owner" : "person",
+  "audience" : {
+    "admin": {},
+    "fill": { groups: [ "0SNQe0032JZ" ] } },
+  "fields" : [ {
+    "id" : "1",
+    "label" : "Why did you join our group ?",
+    "kind" : "text",
+    "required" : true
+  }, {
+    "id" : "2", 
+    "label" : "How often do you log in ?",
+    "kind" : "single",
+    "choices" : [
+      "Every day",
+      "Once a week",
+      "Once a month",
+      "Less than once a month" ],
+    "required" : false
+  } ] }
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+202 Accepted
+Content-Type: application/json
+ 
+{ "id" : "0SNQe0032JZ",
+  "at" : {"2":218} }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>400 Bad Request</code></h2>
+<ul>
+  <li> if the provided identifier is not a valid <a href="/docs/api/concepts/custom-id.htm">custom identifier</a></li>
+</ul><h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not match the requester.</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if the requester is not allowed to create forms.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if the database does not exist</li>
+</ul><h2> Returns <code>409 Conflict</code></h2>
+<ul>
+  <li> if a form already exists with the provided identifier.</li>
+</ul><h1> Access restrictions</h1>
+<p>Only <a href="/docs/api/groups/admin.htm">database administrators</a> can create new forms.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Create a form</span></nav>
