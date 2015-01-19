@@ -3,7 +3,7 @@ layout: docs-js
 title: Remove members from a group
 ---
 <div id="body">
-<pre class="subtitle">method RunOrg.Group.RemoveMany</pre><p><code>group.RemoveMany([person,person])<code> removes the provided array of people frpù </code>group<code>. It returns a <a href="/docs/js/concepts/promise.htm">promise</a> which resolves once the server has acknowledged the request.</p>
+<pre class="subtitle">method RunOrg.Group.RemoveMany</pre><p><code>group.RemoveMany(people)</code> removes the provided array of people from <code>group</code>. It returns a <a href="/docs/js/concepts/promise.htm">promise</a> which resolves once the server has acknowledged the request.</p>
 <p>The people must be provided as identifiers.</p>
 <p>This method silently ignores people who do not exist or are not members of the group.</p>
 

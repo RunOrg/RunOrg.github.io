@@ -9,8 +9,16 @@ title: Authenticate using Mozilla Persona
 <p>The request body contains exactly one field:</p>
 
 
-<table class="fields"><tr><td class="code"><code>assertion</code></td><td class="code"><code>&lt;string></code></td><td><p>The assertion returned by Mozilla Persona. &lt;/field&gt; &lt;doc for=&quot;api&quot;&gt; The assertion validator expects the audience to be the <a href="/docs/api/db/audience.js">database persona audience</a>. If no audience was configured, this will be <code>https://api.runorg.com</code>. # Response Always <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/sync-idempotent.htm">sync-idempotent</a> endpoint. The response contains a single field: &lt;/doc&gt; &lt;fields for=&quot;api&quot;&gt;</p>
-</td></tr><tr><td class="code"><code>token</code></td><td class="code"><code>&lt;token></code></td><td><p>An <a href="/docs/api/auth/token.htm">authentication token</a>.</p>
+<table class="fields"><tr><td class="code"><code>assertion</code></td><td class="code"><code>&lt;string></code></td><td><p>The assertion returned by Mozilla Persona.</p>
+</td></tr></table>
+
+<p>The assertion validator expects the audience to be the <a href="/docs/api/db/audience.js">database persona audience</a>. If no audience was configured, this will be <code>https://api.runorg.com</code>.</p>
+<h1> Response</h1>
+<p>Always <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/sync-idempotent.htm">sync-idempotent</a> endpoint.</p>
+<p>The response contains a single field:</p>
+
+
+<table class="fields"><tr><td class="code"><code>token</code></td><td class="code"><code>&lt;token></code></td><td><p>An <a href="/docs/api/auth/token.htm">authentication token</a>.</p>
 </td></tr><tr><td class="code"><code>self</code></td><td class="code"><code>&lt;person></code></td><td><p>The <a href="/docs/api/people/person.htm">short profile</a> of the authenticated person.</p>
 </td></tr><tr><td class="code"><code>at</code></td><td class="code"><code>&lt;clock></code></td><td><p>The time when the person (if it was created by this request) will be present in the database. The authentication token is always available straight away, regardless of this clock.</p>
 </td></tr></table>
