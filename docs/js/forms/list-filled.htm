@@ -1,0 +1,34 @@
+---
+layout: docs-js
+title: List all filled instances of a form
+---
+<div id="body">
+<pre class="subtitle">method RunOrg.Form.List</pre><p>If <code>form</code> is an instance of <a href="/docs/js/forms/form.htm"><code>RunOrg.Form</code></a>, then <code>form.List(limit,offset)</code> reads <code>limit</code> filled instances of that form, starting at <code>offset</code>. The order is unspecified but consistent.</p>
+<p>Returns a <a href="/docs/js/concept/promise.htm">promise</a> that will resolve to a list of <a href="/docs/js/forms/filled.htm"><code>RunOrg.Form.Filled</code></a> objects.</p>
+
+
+<p class="caption">Example usage</p><pre class="js">
+var form = new RunOrg.Form("");
+form.List(10, 0).then(function(list) {
+  for (var i = 0; i < list.length; ++i) 
+    console.log("Person %s answered %s", list[i].owner, list[i].data.q1)    
+});			
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not authenticate the requester</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if requester does not have <b>admin</b> access to the form.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if form <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if requester cannot view form <code>{id}</code></li>
+</ul><h1> Access restrictions</h1>
+<p>The <b>admin</b> <a href="/docs/js/forms/audience.htm">access level</a> is required to view all filled form instances.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/js/index.htm">RunOrg documentation</a></li><li><a href="/docs/js/forms.htm">Forms</a></li></ul><span class="active">List all filled instances of a form</span></nav>

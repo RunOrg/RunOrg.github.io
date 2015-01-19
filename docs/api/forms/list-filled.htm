@@ -1,0 +1,46 @@
+---
+layout: docs-api
+title: List all filled instances of a form
+---
+<div id="body">
+<pre class="subtitle">GET /db/{db}/forms/{id}/filled</pre><p>Returns all the filled instances of form <code>{id}</code>, in an unspecified but consistent order, with <a href="/docs/api/concepts/pagination.htm">pagination</a>.</p>
+<p>The response contains two fields:</p>
+
+
+
+
+<p class="caption">Example request</p><pre class="api">
+GET /db/0SNQc00211H/forms/0SNQc00711H/filled?as=0Sd7003511H&limit=3&offset=213
+</pre>
+
+<p class="caption">Example response</p><pre class="api">
+200 OK
+Content-Type: application/json 
+   
+{ "list" : [ { 
+    "owner" : "0SNQe00311H",
+    "data": { "color" : "Orange", "birth" : "1985-04-19" } 
+  }, { 
+    "owner" :  "0SNQe00311H",
+    "data": { "birth" : "2013-10-08" }
+  } ],
+  "count": 215 }
+</pre>
+
+<h1> Errors</h1>
+<h2> Returns <code>401 Unauthorized</code></h2>
+<ul>
+  <li> if the provided token does not authenticate the requester</li>
+</ul><h2> Returns <code>403 Forbidden</code></h2>
+<ul>
+  <li> if requester does not have <b>admin</b> access to the form.</li>
+</ul><h2> Returns <code>404 Not Found</code></h2>
+<ul>
+  <li> if database <code>{db}</code> does not exist</li>
+  <li> if form <code>{id}</code> does not exist in database <code>{db}</code></li>
+  <li> if requester cannot view form <code>{id}</code></li>
+</ul><h1> Access restrictions</h1>
+<p>The <b>admin</b> <a href="/docs/api/forms/audience.htm">access level</a> is required to view all filled form instances.</p>
+
+</div>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">List all filled instances of a form</span></nav>

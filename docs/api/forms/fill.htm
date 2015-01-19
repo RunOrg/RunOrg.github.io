@@ -5,11 +5,21 @@ title: Fill a form
 <div id="body">
 <pre class="subtitle">PUT /db/{db}/forms/{id}/filled/{owner}</pre><p>Fills an instance of form <code>{id}</code> bound to entity <code>{owner}</code>.</p>
 <h1> Request</h1>
-<p>The following properties are sent to the server: &lt;/div&gt;</p>
-<p>&lt;fields&gt; data | &lt;dictionary&gt; | Maps field names (as they are defined in the form itself) to arbitrary JSON values which will be saved by RunOrg. The expected contents of each field depend on the <a href="/docs/api/forms/field.htm">configuration</a> of that field. &lt;/fields&gt;</p>
-<p>&lt;example type=&quot;api&quot; caption=&quot;Example request&quot;&gt; PUT /db/0SNQc00211H/forms/0SNQe0032JZ/filled/0SNxd0002JZ?as=0SNxd0002JZ Content-Type: application/json</p>
-<p>{ &quot;data&quot; : { &quot;color&quot;: &quot;Red&quot;, &quot;birth&quot;: &quot;1985-04-19&quot; } } &lt;/example&gt;</p>
-<p>&lt;doc for=&quot;api&quot;&gt;</p>
+<p>The following properties are sent to the server:</p>
+
+
+<table class="fields"><tr><td class="code"><code>data</code></td><td class="code"><code>&lt;dictionary></code></td><td><p>Maps field names (as they are defined in the form itself) to arbitrary JSON values which will be saved by RunOrg. The expected contents of each field depend on the <a href="/docs/api/forms/field.htm">configuration</a> of that field.</p>
+</td></tr></table>
+
+<p class="caption">Example request</p><pre class="api">
+PUT /db/0SNQc00211H/forms/0SNQe0032JZ/filled/0SNxd0002JZ?as=0SNxd0002JZ
+Content-Type: application/json
+  
+{ "data" : { 
+    "color": "Red",
+    "birth": "1985-04-19" } }
+</pre>
+
 <h1> Response</h1>
 <p>Always returns <code>202 Accepted</code>: this is a <a href="/docs/api/concepts/delayed.htm">delayed</a>, <a href="/docs/api/concepts/idempotent.md">idempotent</a> request.</p>
 <p>The response contains a single field:</p>
@@ -28,7 +38,7 @@ Content-Type: application/json
 <h1> Errors</h1>
 <h2> Returns <code>400 Bad Request</code></h2>
 <ul>
-  <li> if a required field was not provided or is <code>null</code>, <code>&quot;&quot;</code>, <code>[]<code> or </code>{}<code>.</li>
+  <li> if a required field was not provided or is <code>null</code>, <code>&quot;&quot;</code>, <code>{}</code> or an empty array.</li>
   <li> if a provided field does not exist in the form.</li>
   <li> if a provided field was not in the expected data format.</li>
 </ul><h2> Returns <code>401 Unauthorized</code></h2>
@@ -47,4 +57,4 @@ Content-Type: application/json
 <p>When owners are people, an instance may be filled only by its owner or by a person with <b>admin</b> access level.</p>
 
 </div>
-<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li><li><a href="/docs/api/forms/filled.htm">A filled instance of a form</a></li></ul><span class="active">Fill a form</span></nav>
+<nav><ul class="above"><li><a href="/docs/api/index.htm">RunOrg documentation</a></li><li><a href="/docs/api/forms.htm">Forms</a></li></ul><span class="active">Fill a form</span></nav>
